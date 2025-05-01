@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs"
 import { Line, LineChart, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { format, subHours } from "date-fns"
+import { Tooltip } from 'recharts';
 
 interface SensorData {
   smoke: number
@@ -163,7 +164,7 @@ export function Dashboard() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="time" label={{ value: "Time", position: "insideBottom", offset: -10 }} />
                   <YAxis label={{ value: "Smoke (%)", angle: -90, position: "insideLeft" }} />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Tooltip content={<ChartTooltipContent />} />
                   <Line
                     type="monotone"
                     dataKey="value"
@@ -198,7 +199,7 @@ export function Dashboard() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="time" label={{ value: "Time", position: "insideBottom", offset: -10 }} />
                   <YAxis label={{ value: "Temperature (°C)", angle: -90, position: "insideLeft" }} />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Tooltip content={<ChartTooltipContent />} />
                   <Line
                     type="monotone"
                     dataKey="value"
@@ -233,7 +234,7 @@ export function Dashboard() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="time" label={{ value: "Time", position: "insideBottom", offset: -10 }} />
                   <YAxis label={{ value: "Humidity (%)", angle: -90, position: "insideLeft" }} />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Tooltip content={<ChartTooltipContent />} />
                   <Line
                     type="monotone"
                     dataKey="value"
