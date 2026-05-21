@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔥 FireWatch
+
+A full-stack web application for monitoring and tracking fire-related data. Built with Next.js 14, Firebase, and Clerk authentication.
+
+**[Live Demo →](https://fire-watch-kohl.vercel.app)**
+
+---
+
+## Tech Stack
+
+| Layer | Tech |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS + shadcn/ui |
+| Auth | Clerk |
+| Backend | Firebase (Firestore + Cloud Functions) |
+| Deployment | Vercel |
+
+---
+
+## Project Structure
+
+```
+FireWatch/
+├── app/              # Next.js App Router pages & layouts
+├── components/       # Reusable UI components (shadcn/ui based)
+├── functions/        # Firebase Cloud Functions
+├── lib/              # Utility functions & shared logic
+└── public/           # Static assets
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- A [Firebase](https://firebase.google.com) project
+- A [Clerk](https://clerk.com) account
+
+### Installation
+
+```bash
+git clone https://github.com/Munish0303/FireWatch.git
+cd FireWatch
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root:
+
+```env
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/register
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
+
+### Run Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Authentication & Routes
 
-## Learn More
+Clerk handles auth via `middleware.ts`. Public routes:
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Access |
+|---|---|
+| `/` | Public |
+| `/sign-in` | Public |
+| `/register` | Public |
+| `/learn-more` | Public |
+| Everything else | Authenticated only |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Firebase Cloud Functions
 
-## Deploy on Vercel
+Cloud Functions live in `/functions`. To deploy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install -g firebase-tools
+firebase login
+firebase deploy --only functions
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Deployment
+
+Deployed on Vercel. To deploy your own instance:
+
+```bash
+npm run build   # verify build passes locally first
+```
+
+Then connect the repo to [Vercel](https://vercel.com) and add all environment variables from `.env.local` to the Vercel dashboard.
+
+---
+
+## Scripts
+
+```bash
+npm run dev      # Start dev server
+npm run build    # Production build
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
+
+---
+
+## License
+
+MIT
