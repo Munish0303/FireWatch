@@ -2,7 +2,6 @@
 
 A full-stack web application for monitoring and tracking fire-related data. Built with Next.js 14, Firebase, and Clerk authentication.
 
-**[Live Demo →](https://fire-watch-kohl.vercel.app)**
 
 ---
 
